@@ -51,3 +51,10 @@ def update(request, id):
         'form':  form,
     }
     return render(request, 'update.html', context)
+
+def delete(request, id):
+    # 데이터를 찾아서 지우고 index로 보내기
+    article = Article.objects.get(id=id)
+    article.delete()
+    
+    return redirect('articles:index')
